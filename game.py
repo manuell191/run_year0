@@ -1,3 +1,5 @@
+from utils import clean_input 
+
 class Game:
     def __init__(self):
         self.running = True
@@ -7,6 +9,9 @@ class Game:
         pass
 
     def process_input(self, user_in):
+        # clean input before processing
+        user_in = clean_input(user_in)
+
         if user_in == "exit":
             self.running = False
 
@@ -18,7 +23,7 @@ class Game:
         while self.running:
             print("What do you want to do?")
             user_in = input(": ")
-            process_input(user_in)
+            self.process_input(user_in)
 
         # if game ends
         print("Thanks for playing!")
