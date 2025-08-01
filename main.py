@@ -1,8 +1,10 @@
-import os
+from game import Game
 
-def clear_screen():
-    # Check OS
-    if os.name == "nt": # if windows
-        os.system("cls")
-    else:
-        os.system("clear")
+def main():
+    # TODO: add settings and/or a set up
+    game = Game()
+
+    game.run()
+
+if __name__ == "__main__":
+    main()
