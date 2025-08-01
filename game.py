@@ -1,28 +1,28 @@
 from utils import clean_input 
 
 class Game:
-    def __init__(self):
-        self.running = True
+    def __init__(self) -> None:
+        self.running: bool = True
 
-    def introduction(self):
+    def introduction(self) -> None:
         # function to keep introduction organized
         pass
 
-    def process_input(self, user_in):
+    def process_input(self, user_in: str) -> None:
         # clean input before processing
-        user_in = clean_input(user_in)
+        user_in: str = clean_input(user_in)
 
         if user_in == "exit":
             self.running = False
 
-    def run(self):
+    def run(self) -> None:
         # temporary introduction
         print("Welcome to the world of Run!")
         
         # regular game loop
         while self.running:
             print("What do you want to do?")
-            user_in = input(": ")
+            user_in: str = input(": ")
             self.process_input(user_in)
 
         # if game ends

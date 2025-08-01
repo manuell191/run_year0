@@ -1,8 +1,8 @@
 from game import Game
 
-def main():
+def main() -> None:
     # TODO: add settings and/or a set up
-    game = Game()
+    game: Game = Game()
 
     game.run()
 
