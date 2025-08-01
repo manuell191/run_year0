@@ -1,7 +1,9 @@
-class Character:
-    def __init__(self) -> None:
-        self.health: int
-        self.max_health: int
+from random import randint
+from game_object import GameObject
+
+class Character(GameObject):
+    def __init__(self, max_health) -> None:
+        super().__init__(max_health)
         self.damage: tuple[int]
         self.inventory: list[None] = []
 
@@ -13,3 +15,9 @@ class Character:
         if self.health > max_health:
             self.health = max_health
     
+    def attack(self, target: GameObject) -> None:
+        # damage is a random amount between the two self.damage values
+        dmg = randint(self.damage[0], self.damage[1])
+
+        # target takes damage equal to dmg
+        target.take_damage(dmg)
