@@ -1,5 +1,6 @@
 from random import randint
-from game_object import GameObject
+from .game_object import GameObject
+from ..game_weapon import GameWeapon
 
 class Character(GameObject):
     def __init__(self, max_health) -> None:
@@ -30,7 +31,7 @@ class Character(GameObject):
         # remove an item from the inventory
         self.inventory.remove(item)
 
-    def update_damage(self, weapon):
+    def update_damage(self, weapon: GameWeapon):
         # sets this character damage to be equal to the weapon damage
         self.damage = weapon.damage # TODO: add a way to randomize weapons
 
