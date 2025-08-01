@@ -29,3 +29,15 @@ class Character(GameObject):
     def rm_inv(self, item):
         # remove an item from the inventory
         self.inventory.remove(item)
+
+    def update_damage(self, weapon):
+        # sets this character damage to be equal to the weapon damage
+        self.damage = weapon.damage # TODO: add a way to randomize weapons
+
+        # adds the weapon to the inventory if not already added
+        if weapon not in self.inventory:
+            self.add_inv(weapon)
+
+    def set_exact_damage(self, damage: list[int]):
+        # set the exact damage when damage is unusual
+        self.damage = damage
