@@ -21,3 +21,11 @@ class Character(GameObject):
 
         # target takes damage equal to dmg
         target.take_damage(dmg)
+
+    def add_inv(self, item):
+        # add an item to the inventory
+        self.inventory.append(item)
+
+    def rm_inv(self, item):
+        # remove an item from the inventory
+        self.inventory.remove(item)
