@@ -10,5 +10,5 @@ class PlayerCharacter(Character):
         damage (tuple[int]): damage range
         inventory (list[GameItem]): all items held by player
     """
-    def __init__(self, max_health):
+    def __init__(self, max_health: int):
         super().__init__(max_health)
