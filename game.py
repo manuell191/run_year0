@@ -1,8 +1,10 @@
-from utils import clean_input 
+from utils import clean_input, clear_screen
+from game_objects.player_character import PlayerCharacter
 
 class Game:
     def __init__(self) -> None:
         self.running: bool = True
+        self.player: PlayerCharacter
 
     def introduction(self) -> None:
         # function to keep introduction organized
