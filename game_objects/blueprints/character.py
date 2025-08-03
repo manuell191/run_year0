@@ -33,22 +33,30 @@ class Character(GameObject):
         # target takes damage equal to dmg
         target.take_damage(dmg)
 
-    def add_inv(self, item):
+    def add_inv(self, item: GameItem) -> None:
         # add an item to the inventory
         self.inventory.append(item)
 
-    def rm_inv(self, item):
+    def rm_inv(self, item: GameItem) -> None:
         # remove an item from the inventory
         self.inventory.remove(item)
 
-    def update_damage(self, weapon: GameWeapon):
+    def update_damage(self, weapon: GameWeapon, add_item: bool = True) -> None:
         # sets this character damage to be equal to the weapon damage
         self.damage = weapon.damage # TODO: add a way to randomize weapons
 
-        # adds the weapon to the inventory if not already added
-        if weapon not in self.inventory:
+        # adds the weapon to the inventory if not already added, and if allowed to add
+        if weapon not in self.inventory and add_item:
             self.add_inv(weapon)
 
-    def set_exact_damage(self, damage: list[int]):
+    def set_exact_damage(self, damage: list[int]) -> None:
         # set the exact damage when damage is unusual
         self.damage = damage
+
+    # TODO: optional character death message?
+    def death(self) -> None | list[GameItem]:
+        if self.inventory != []:
+            # return all inventory items when killed
+            return self.inventory
+        # return None as a way to say that the character had no items
+        return None
