@@ -12,13 +12,17 @@ def clean_input(user_in) -> str:
     # return an easier string to process
     return user_in.lower().strip()
 
-def calc_stats(stats: dict[str, int]) -> tuple[int]:
+def calc_stats(stats: dict[str, int]) -> int:
     """
     Vigor stat returns final health
     Endurance stat return final Endurance
     Strength stat returns attack adder
     Dexterity stat returns attack adder
     """
+    vigor: int
+    endurance: int
+    strength: int
+    dexterity: int
 
     # vigor math
     if stats["vig"] < 20:
@@ -78,4 +82,4 @@ def calc_stats(stats: dict[str, int]) -> tuple[int]:
 
     dexterity = math.floor(dexterity)
 
-    return (vigor, endurance, strength, dexterity)
+    return vigor, endurance, strength, dexterity

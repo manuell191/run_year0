@@ -2,6 +2,7 @@ from random import randint
 from .game_object import GameObject
 from .game_item import GameItem
 from ..game_weapon import GameWeapon
+from ...utils import calc_stats
 
 class Character(GameObject):
     """
@@ -12,12 +13,36 @@ class Character(GameObject):
         health(int): current health
         damage(typle[int]): damage range
         inventory (list[GameItem]): all items held by a character
+        location (int): current location
+        stats (dict[str, int]): all stats
+        multipliers (dict[str, int]): multipliers for battle
     """
-    def __init__(self, max_health: int, location: int) -> None:
+    def __init__(self,
+                 location: int, 
+                 stats: dict[str, int] = None) -> None:
         super().__init__(max_health)
         self.damage: tuple[int]
         self.inventory: list[GameItem] = []
         self.location: int = location
+        if stats == None:
+            self.stats = {
+                        "vig": 0,
+                        "end": 0,
+                        "str": 0,
+                        "dex": 0
+                    }
+        else:
+            self.stats = stats
+
+        vigor, endurance, strength, dexterity = calc_stats(self.stats)
+        super().__init__(vigor)
+        self.multipliers = {
+                    "end": endurance,
+                    "str": strength,
+                    "dex": dexterity
+                }
+
+
 
     def heal(self, num: int) -> None:
         # add new value to health
@@ -53,6 +78,21 @@ class Character(GameObject):
     def set_exact_damage(self, damage: list[int]) -> None:
         # set the exact damage when damage is unusual
         self.damage = damage
+
+    def get_multipliers(self) -> int:
+        # to get multipliers when entering battle or attacking
+        return self.multipliers["end"], self.multipliers["str"], self.multipliers["dex"]
+
+    def set_stats(self, stats: dict[str, int]):
+        # set new stats
+        self.stats = stats
+        # get and set new multipliers
+        self.max_health, endurance, strength, dexterity = calc_stats(self.stats)
+        self.multipliers = {
+                    "end": endurance,
+                    "str": strength,
+                    "dex": dexterity
+                }
 
     # TODO: optional character death message?
     def death(self) -> None | list[GameItem]:
