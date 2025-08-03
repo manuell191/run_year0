@@ -13,10 +13,11 @@ class Character(GameObject):
         damage(typle[int]): damage range
         inventory (list[GameItem]): all items held by a character
     """
-    def __init__(self, max_health: int) -> None:
+    def __init__(self, max_health: int, location: int) -> None:
         super().__init__(max_health)
         self.damage: tuple[int]
         self.inventory: list[GameItem] = []
+        self.location: int = location
 
     def heal(self, num: int) -> None:
         # add new value to health
