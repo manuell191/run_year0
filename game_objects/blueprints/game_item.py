@@ -24,7 +24,7 @@ class GameItem:
     """
     def __init__(self, item_type: int = 0):
         self.weight: int
-        self.type: int
+        self.type: int = item_type
 
     def set_weight(self, value: int):
         # set the weight value for the item
