@@ -25,7 +25,7 @@ class Game:
             elif user_in == "3" or user_in == "thief":
                 self.player = PlayerCharacter(3)
                 break
-            elif user_in =="4" or user_int == "depraved":
+            elif user_in =="4" or user_in == "depraved":
                 self.player = PlayerCharacter(4)
                 break
             else:
@@ -43,6 +43,8 @@ class Game:
     def run(self) -> None:
         # temporary introduction
         print("Welcome to the world of Run!")
+
+        self.introduction()
         
         # regular game loop
         while self.running:

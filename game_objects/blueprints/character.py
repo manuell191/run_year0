@@ -2,7 +2,7 @@ from random import randint
 from .game_object import GameObject
 from .game_item import GameItem
 from ..game_weapon import GameWeapon
-from ...utils import calc_stats
+from utils import calc_stats
 
 class Character(GameObject):
     """
@@ -20,7 +20,6 @@ class Character(GameObject):
     def __init__(self,
                  location: int, 
                  stats: dict[str, int] = None) -> None:
-        super().__init__(max_health)
         self.damage: tuple[int]
         self.inventory: list[GameItem] = []
         self.location: int = location
